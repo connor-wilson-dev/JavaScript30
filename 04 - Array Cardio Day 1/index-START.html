@@ -58,7 +58,20 @@
     let sortedBirthdays = inventors.sort(function(a,b) {
       return a.year - b.year
     });
-    //console.table(sortedBirthdays);
+    console.table(sortedBirthdays);
+
+    // Wes' Solution
+    const ordered = inventors.sort((a,b) => a.year > b.year ? 1 :  -1);
+
+    console.table(ordered);
+    
+    /*****************
+    Key Take Aways:
+    Wes' solution takes advantage of ternary statements, which will make the code fit on one line. But he uses it to return either 1 or -1. My function which returns a statement is a bit more confusing and is one I don't really understand.
+
+    Wes' solution is great because it can almost be viewed as giving a priority or an index, if a is greater than b than give a +1, else give -1, thus lowering its priority in the sorting method.
+    *****************/
+
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live?
