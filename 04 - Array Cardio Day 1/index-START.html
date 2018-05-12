@@ -49,7 +49,7 @@
     // 2. Give us an array of the inventors' first and last names
     let firstNameLastName = inventors.map(inventor =>  `${inventor.first} ${inventor.last}`);
 
-    //console.log(firstNameLastName);
+    //console.table(firstNameLastName);
 
     /****** Same as Wes' Solution *******/
 
@@ -58,20 +58,20 @@
     let sortedBirthdays = inventors.sort(function(a,b) {
       return a.year - b.year
     });
-    //console.log(sortedBirthdays);
+    //console.table(sortedBirthdays);
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live?
     let inventorAgeTotal = inventors.map(inventor => (inventor.passed - inventor.year)).reduce( (a,b) => a + b, 0);
 
-    //console.log(inventorAgeTotal);
+    //console.table(inventorAgeTotal);
 
     // 5. Sort the inventors by years lived
     let inventorOldestFirst = inventors.map(inventor => {
       return {inventor: `${inventor.first} ${inventor.last}`, age: inventor.passed - inventor.year}
     }).sort((a,b) =>  b.age - a.age);
 
-    //console.log(inventorOldestFirst);
+    //console.table(inventorOldestFirst);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
@@ -81,7 +81,7 @@
     // Sort the people alphabetically by last name
     let nameAlphabetically = people.sort();
 
-    //console.log(nameAlphabetically)
+    //console.table(nameAlphabetically)
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
