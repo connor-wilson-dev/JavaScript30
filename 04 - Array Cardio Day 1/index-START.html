@@ -34,11 +34,11 @@
     let fifteenHundred = inventors.filter(function(inventor) {
       if (inventor.year < 1600 && inventor.year > 1499)  return inventor
     });
-    //console.table(fifteenHundred);
+    console.table(fifteenHundred);
 
     // Wes' solution
     let fifteen = inventors.filter(inventor => (inventor.year < 1600 && inventor.year  >= 1500))
-    console.table(fifteen);
+    //console.table(fifteen);
     /***********************
     Take away from wes' solution:
     the callback function inside of filter only needs to return a true or false, my solution works because it returns a full object which is truthy, and so either will work.
@@ -49,7 +49,7 @@
     // 2. Give us an array of the inventors' first and last names
     let firstNameLastName = inventors.map(inventor =>  `${inventor.first} ${inventor.last}`);
 
-    //console.table(firstNameLastName);
+    console.table(firstNameLastName);
 
     /****** Same as Wes' Solution *******/
 
@@ -63,8 +63,8 @@
     // Wes' Solution
     const ordered = inventors.sort((a,b) => a.year > b.year ? 1 :  -1);
 
-    console.table(ordered);
-    
+    //console.table(ordered);
+
     /*****************
     Key Take Aways:
     Wes' solution takes advantage of ternary statements, which will make the code fit on one line. But he uses it to return either 1 or -1. My function which returns a statement is a bit more confusing and is one I don't really understand.
@@ -78,6 +78,19 @@
     let inventorAgeTotal = inventors.map(inventor => (inventor.passed - inventor.year)).reduce( (a,b) => a + b, 0);
 
     //console.table(inventorAgeTotal);
+
+    // Wes' Solution
+
+    const totalYears = inventors.reduce((total, inventor) => {
+      return total + (inventor.passed - inventor.year)
+    }, 0);
+
+    /************
+    Key Take Aways:
+    Wes' solution takes full advantage of the reduce method. I had not grasped the meaning of having an accumulator and a currentValue in the MDN docs, and now i understand what is actually available to me.
+
+    In my solution, I thought it would be necessary to first map and calculate the age of each inventor into a new array and then reduce it. But now i can see, thanks to Wes' example, that I can still access that inventor (the currentValue) and mess with that before adding it to the accumulator.  Also important to add a zero at the end of the function so the reduce function knows where to start counting from.
+    **************/
 
     // 5. Sort the inventors by years lived
     let inventorOldestFirst = inventors.map(inventor => {
