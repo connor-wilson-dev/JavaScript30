@@ -34,8 +34,17 @@
     let fifteenHundred = inventors.filter(function(inventor) {
       if (inventor.year < 1600 && inventor.year > 1499)  return inventor
     });
-    // console.log(fifteenHundred);
+    //console.table(fifteenHundred);
 
+    // Wes' solution
+    let fifteen = inventors.filter(inventor => (inventor.year < 1600 && inventor.year  >= 1500))
+    console.table(fifteen);
+    /***********************
+    Take away from wes' solution:
+    the callback function inside of filter only needs to return a true or false, my solution works because it returns a full object which is truthy, and so either will work.
+
+    Wes' is cleanest because it takes advantage of the fact that any boolean statement will return either true or false, letting it be consolidated from an if statement into a simple boolean. This is a little easier to read, and does not require as much head space.
+    ***********************/
     // Array.prototype.map()
     // 2. Give us an array of the inventors' first and last names
     let firstNameLastName = inventors.map(inventor =>  `${inventor.first} ${inventor.last}`);
@@ -60,6 +69,7 @@
     }).sort((a,b) =>  b.age - a.age);
 
     //console.log(inventorOldestFirst);
+
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
@@ -68,7 +78,8 @@
     // Sort the people alphabetically by last name
     let nameAlphabetically = people.sort();
 
-    console.log(nameAlphabetically)
+    //console.log(nameAlphabetically)
+
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
