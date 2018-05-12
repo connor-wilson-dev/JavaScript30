@@ -59,14 +59,16 @@
       return {inventor: `${inventor.first} ${inventor.last}`, age: inventor.passed - inventor.year}
     }).sort((a,b) =>  b.age - a.age);
 
-    console.log(inventorOldestFirst);
+    //console.log(inventorOldestFirst);
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    let nameAlphabetically = people.sort();
 
+    console.log(nameAlphabetically)
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
