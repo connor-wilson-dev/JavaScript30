@@ -57,7 +57,7 @@
     // 5. Sort the inventors by years lived
     let inventorOldestFirst = inventors.map(inventor => {
       return {inventor: `${inventor.first} ${inventor.last}`, age: inventor.passed - inventor.year}
-    }).sort((a,b) => a.age - b.age);
+    }).sort((a,b) =>  b.age - a.age);
 
     console.log(inventorOldestFirst);
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
