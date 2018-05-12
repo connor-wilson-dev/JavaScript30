@@ -67,11 +67,17 @@
       transition: all 0.05s
       transition-timing-function: ease-out;
     }
-
+    .min-hand {
+      height: 4px;
+    }
+    .second-hand {
+      height: 2px;
+    }
   </style>
 
   <script>
-  const secondHand = document.querySelector('.second-hand')
+  const secondHand = document.querySelector('.second-hand');
+  const minuteHand = document.querySelector('.min-hand');
 
   function setDate() {
 
@@ -84,7 +90,12 @@
 
     secondHand.style.transform = `rotate(${secondDegrees}deg)`
 
-    console.log(seconds, secondDegrees)
+
+
+    const minutes = now.getMinutes();
+
+    const minuteDegrees = ((minutes / 60) * 360) + 90;
+    minuteHand.style.transform = `rotate(${minuteDegrees}deg)`
   }
   setInterval(setDate, 1000);
   </script>
