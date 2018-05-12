@@ -104,7 +104,7 @@
       return lastGuy > nextGuy ? -1 : 1
     });
 
-    console.table(oldest);
+    //console.table(oldest);
     /*************
     Key Take Aways:
     Here I think Wes' solution is actually not quite right? I think it could just be done simpler. I think he is right to take the ages of either person and set them up in variables that will be easier to understand.
@@ -115,7 +115,12 @@
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-
+    let category = document.querySelector('.mw-category');
+    // const links = category.querySelectorAll('a');
+    let links = Array.from(category.querySelectorAll('a'));
+    var deRoads = links
+                                .map(link => link.textContent)
+                                .filter(streetName => streetName.includes('de'));
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
@@ -126,7 +131,7 @@
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
-
+  
   </script>
 </body>
 </html>
