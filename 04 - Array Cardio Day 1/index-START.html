@@ -89,15 +89,29 @@
     Key Take Aways:
     Wes' solution takes full advantage of the reduce method. I had not grasped the meaning of having an accumulator and a currentValue in the MDN docs, and now i understand what is actually available to me.
 
-    In my solution, I thought it would be necessary to first map and calculate the age of each inventor into a new array and then reduce it. But now i can see, thanks to Wes' example, that I can still access that inventor (the currentValue) and mess with that before adding it to the accumulator.  Also important to add a zero at the end of the function so the reduce function knows where to start counting from.
+    In my solution, I thought it would be necessary to first map and calculate the age of each inventor into a new array and then reduce it. But now i can see, thanks to Wes' example, that I can still access that inventor (the currentValue) and mess with that before adding it to the accumulator.  Also important to add a zero at the end of the function so the reduce function knows where to start counting from. This also would save me from manipulating the data, since wes' function leaves it all intact.
     **************/
 
     // 5. Sort the inventors by years lived
-    let inventorOldestFirst = inventors.map(inventor => {
-      return {inventor: `${inventor.first} ${inventor.last}`, age: inventor.passed - inventor.year}
-    }).sort((a,b) =>  b.age - a.age);
+    let inventorOldestFirst = inventors.map(inventor => {return {inventor: `${inventor.first} ${inventor.last}`, age: inventor.passed - inventor.year}}).sort((a,b) =>  b.age - a.age);
 
-    //console.table(inventorOldestFirst);
+    console.table(inventorOldestFirst);
+
+    // Wes' solution
+    const oldest = inventors.sort(function(a,b) {
+      const lastGuy = a.passed - a.year;
+      const nextGuy = b.passed - b.year;
+      return lastGuy > nextGuy ? -1 : 1
+    });
+
+    console.table(oldest);
+    /*************
+    Key Take Aways:
+    Here I think Wes' solution is actually not quite right? I think it could just be done simpler. I think he is right to take the ages of either person and set them up in variables that will be easier to understand.
+
+    I like my solution a tad better (though it has its own problems) because it can be fit into one line of code. But looking over my code again, and seeing my results laid out in a table. I can see where wes' is correct. His function is not manipulating the data into something new, it is just simply sorting the data per the functions request, which given how few lines he does it in, is a really clean piece of code.
+    **************/
+
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
