@@ -34,8 +34,8 @@ function draw(e) {
   //go to
   ctxt.lineTo(e.offsetX, e.offsetY);
   ctxt.stroke();
-  lastX = e.offsetX;
-  lastY = e.offsetY;
+
+  [lastX, lastY] = [e.offsetX, e.offsetY];
 }
 
 canvas.addEventListener('mousemove', draw);
