@@ -23,7 +23,7 @@ let isDrawing = false;
 
 let lastX = 0, lastY = 0;
 let hue = 0
-
+let direction = true
 
 function draw(e) {
   if (!isDrawing) return;
@@ -39,8 +39,21 @@ function draw(e) {
   ctxt.stroke();
 
   [lastX, lastY] = [e.offsetX, e.offsetY];
-  
+
   hue ++
+
+  if (hue >= 360) {
+    hue = 0;
+  }
+  if (ctxt.lineWidth >= 100 || ctxt.lineWidth <= 1) {
+    direction = !direction;
+  }
+  if (direction) {
+    ctxt.lineWidth++;
+  } else {
+    ctxt.lineWidth--;
+  }
+
 }
 
 canvas.addEventListener('mousemove', draw);
