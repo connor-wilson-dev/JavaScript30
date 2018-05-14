@@ -29,9 +29,13 @@ function draw(e) {
   console.log(e);
 
   ctxt.beginPath();
+  //start from
   ctxt.moveTo(lastX, lastY);
+  //go to
   ctxt.lineTo(e.offsetX, e.offsetY);
   ctxt.stroke();
+  lastX = e.offsetX;
+  lastY = e.offsetY;
 }
 
 canvas.addEventListener('mousemove', draw);
