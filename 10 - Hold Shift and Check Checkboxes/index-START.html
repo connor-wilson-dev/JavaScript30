@@ -99,6 +99,29 @@
   </div>
 
 <script>
+
+const inputs = document.querySelectorAll('input[type="checkbox"]');
+
+const inputsArr = Array.prototype.slice.call(inputs);
+
+inputsArr.forEach(input => function() {
+
+  input.addEventListener('click',  function(e) {
+
+    if (e.shiftKey) {
+
+      console.log('SHIFT!' + e);
+
+    } else {
+
+      console.log(e);
+
+    }
+
+  });
+  
+});
+
 </script>
 </body>
 </html>
