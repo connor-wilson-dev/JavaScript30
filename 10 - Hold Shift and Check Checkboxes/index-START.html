@@ -100,27 +100,28 @@
 
 <script>
 
-const inputs = document.querySelectorAll('input[type="checkbox"]');
+const checkboxes = [...document.querySelectorAll('.inbox input[type="checkbox"]')];
+let lastChecked;
+console.log(checkboxes)
 
-const inputsArr = Array.prototype.slice.call(inputs);
+function handleCheck(e) {
+  //check for shiftKey
+  //AND check if e.target is getting checked not unchecked
+  let inBetween = false;
+  if (e.shiftKey && this.checked) {
+    checkboxes.forEach(checkbox => {
+      if (checkbox === this || checkbox === lastChecked) {
+        inBetween = !inBetween;
+      }
+      if (inBetween) {
+        checkbox.checked = true;
+      }
+    })
+  }
+  lastChecked = this;
+}
 
-inputsArr.forEach(input => function() {
-
-  input.addEventListener('click',  function(e) {
-
-    if (e.shiftKey) {
-
-      console.log('SHIFT!' + e);
-
-    } else {
-
-      console.log(e);
-
-    }
-
-  });
-  
-});
+checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
 
 </script>
 </body>
