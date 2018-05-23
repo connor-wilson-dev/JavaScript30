@@ -23,8 +23,10 @@ function skip() {
   video.currentTime += parseFloat(this.dataset.skip);
 }
 
-function handleRangeUpdate() = {
-  console.log(this.value)
+function handleRangeUpdate()  {
+  //name of each range pertains to the value of the method we want to change.
+  //Therefore we just have to change the value of the given name we are already recieving.
+  video[this.name] = this.value
 }
 toggle.addEventListener('click', togglePlay)
 video.addEventListener('click', togglePlay);
@@ -35,3 +37,4 @@ skipButtons.forEach(button => button.addEventListener('click', skip)
 )
 
 ranges.forEach(range => range.addEventListener('change', handleRangeUpdate))
+ranges.forEach(range =>range.addEventListener('mousemove', handleRangeUpdate))
