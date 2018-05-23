@@ -58,6 +58,34 @@
       };
     }
 
+    const sliderImages = document.querySelectorAll('.slide-in');
+    function checkSlide(e) {
+      sliderImages.forEach(sliderImage => {
+        //window.scrollY will give you the scroll height of the top of the window, so you have to add in the windows innerHeight to make sure you are measuring for the bottom of the window.
+        const slideInAt = (window.scrollY + window.innerHeight) - sliderImage.height / 2;
+        // then we subtract from the window bottom the height of half the image so that the image will fade in when half of it is on screen.
+
+        //This calcs the images bottom so that we can tell it when to fade back out, by getting the offset top (the amount of distance between the top of the image and the top of the window) and adding to it the height of the image.
+        const imageBottom = sliderImage.offsetTop + sliderImage.height;
+
+        // Checks if the image is half shown
+        const isHalfShown = slideInAt > sliderImage.offsetTop;
+        // checks if the image is scrolled past
+        const isNotScrolledPast = window.scrollY < imageBottom;
+
+        if (isHalfShown && isNotScrolledPast ) {
+          sliderImage.classList.add('active');
+        } else {
+          sliderImage.classList.remove('active');
+        }
+
+
+        console.log(slideInAt);
+      })
+    }
+    //TAKEAWAY: Scroll events fire very often, so it is important to debounce the event so that they do not overload and cause system errors, like framerate issues or loading speed issues.
+    window.addEventListener('scroll', debounce(checkSlide));
+
   </script>
 
   <style>
