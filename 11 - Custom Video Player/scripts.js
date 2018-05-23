@@ -5,7 +5,7 @@ const prog = player.querySelector('.progress')
 const progFilled = prog.children[0];
 const vol = player.querySelector('input[name="volume"]');
 const playerControls = player.querySelector('.player__controls');
-const playbackRate = player.querySelector('input[name="volume"]');
+const playbackRate = player.querySelector('[name="playbackRate"]');
 const skipButtons = player.querySelectorAll('[data-skip]');
 
 function togglePlay() {
