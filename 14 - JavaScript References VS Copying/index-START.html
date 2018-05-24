@@ -12,14 +12,20 @@
     console.log(age, age2);
     age = 200;
     console.log(age, age2);
+
+    let name = 'Connor';
+    let name2 = name;
+    console.log(name, name2);
+    name = 'Franklin';
+    console.log(name,name2);
     // Let's say we have an array
     const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
 
-let name = 'Connor';
-let name2 = name;
-console.log(name, name2);
-name = 'Franklin';
-console.log(name,name2);
+const team = players
+//this turns the fourth person in the array team to lux, but it also manipulates the fourth person of players to be lux too, which can have unintended consequences.
+team[3] = 'lux'
+
+console.log(players, team) // both equal [wes,sarah,ryan,lux]
     // and we want to make a copy of it.
 
     // You might think we can just do something like this:
@@ -31,15 +37,21 @@ console.log(name,name2);
     // oh no - we have edited the original array too!
 
     // Why? It's because that is an array reference, not an array copy. They both point to the same array!
-
+const team2 = players.slice();
     // So, how do we fix this? We take a copy instead!
+team2[3] = 'Lux'; // this now turns the fourth person on team 2 to Lux, but leaves Poppy on the players Arrays
+
+//Slice, when given no arguments, makes a copy of an array for you to manipulate and mess with.
+
 
     // one way
 
     // or create a new array and concat the old one in
-
+const team3 = [].concat(players); //works similarly to the one above
     // or use the new ES6 Spread
-
+const team4 = [...players];
+  //or create a new array from the players array
+const team5 = Array.from(players);
     // now when we update it, the original one isn't changed
 
     // The same thing goes for objects, let's say we have a person object
@@ -51,9 +63,11 @@ console.log(name,name2);
     };
 
     // and think we make a copy:
-
+const captain = person
+captain.number = 99 //this changes person as well as captain, which we don't want
     // how do we take a copy instead?
-
+const cap2 = Object.assign({}, person, {number: 99})
+console.log(cap2)
     // We will hopefully soon see the object ...spread
 
     // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
