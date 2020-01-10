@@ -29,12 +29,49 @@
   }
 
   h1 {
-    text-shadow: 10px 10px 0 rgba(0,0,0,1);
+    --x: 10px;
+    --y: 10px;
+    text-shadow: var(--x) var(--y) 0 rgba(0,0,0,1);
     font-size: 100px;
   }
   </style>
 
 <script>
+  const lerp = (min, max, fraction) => ((max - min) * fraction + min);
+  const hero = document.querySelector('.hero');
+  const text = document.querySelector('h1');
+  const frac = 0.5;
+  const styles = getComputedStyle(text);
+  const {style: textStyle} = text;
+
+  let [lastx, lasty] = [0,0]
+
+  function shadow(e) {
+    const walk = 50;
+    const { offsetHeight: height, offsetWidth: width } = hero;
+    let { offsetX: x, offsetY: y, target } = e;
+    
+    if (this !== target) {
+      x = x + target.offsetLeft;
+      y = y + target.offsetTop;
+    }
+
+    const xWalk = Math.round(( x / width * walk ) - ( walk / 2));
+    const yWalk = Math.round(( y / height * walk ) - ( walk / 2));
+    // walk is equal to the amount of area to travel;
+    // since our walk is 100, then the area we walk is 100px;
+    // so starting at x = 0 (on a graph);
+    // we can go right 50px and left 50px (-50px);
+    // that is the walk we can go inbetween.
+
+
+    textStyle.setProperty('--x', xWalk+'px');
+    textStyle.setProperty('--y', yWalk+'px');
+    console.log( xWalk, yWalk );
+  }
+
+  hero.addEventListener('mousemove', shadow)
+
 </script>
 </body>
 </html>

@@ -43,11 +43,54 @@
 
   <ul id="bands"></ul>
 
+<!--
 <script>
 const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
+const container = document.getElementById('bands');
+const orderedBands = bands.sort();
+const cutWords = ['The', 'A', 'An',];
+const purgedBands = bands.map(band => sortBands(band));
+const sortedBands = purgedBands.sort((a,b) => a - b);
 
+function sortBands(str) {
+  const li = document.createElement('li');
+  let bandWordsArr = str.split(' ');
+  
+  const passingWords = bandWordsArr.filter(word => !cutWords.includes(word));
+
+  return passingWords.join(' ');
+}
+
+function addLi(str) {
+  const li = document.createElement('li');
+  const text = document.createTextNode(str);
+
+  li.appendChild(text);
+  return container.appendChild(li);
+}
+
+sortedBands.forEach(band => addLi(band))
 </script>
+-->
+<script>
+  const container = document.getElementById('bands');
+  const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
+  const sortedBands = bands.sort((a, b) => strip(a) > strip(b));
+
+  function strip(bandName) {
+    return bandName.replace(/^(a |the |an )/i, '').trim();
+  }
+
+  function addListItems(item) {
+    const li = document.createElement('li');
+    const text = document.createTextNode(item);
+
+    li.appendChild(text);
+    return container.appendChild(li);
+  }
+  sortedBands.forEach(addListItems);
+</script>
 </body>
 </html>
